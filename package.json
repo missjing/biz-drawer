@@ -1,6 +1,6 @@
 {
   "name": "biz-drawer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "simple drawer for biz scene using react",
   "main": "index.js",
   "keywords": [

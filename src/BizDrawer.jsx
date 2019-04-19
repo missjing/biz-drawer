@@ -2,6 +2,8 @@ import React from 'react';
 import '../assets/index.less';
 import PropTypes from 'prop-types';
 
+// 过渡动画时长300ms
+const ANIMATION_TIME = 300;
 class BizDrawer extends React.Component {
   state = {
     taskCls: 'drawer-bottom',
@@ -9,20 +11,35 @@ class BizDrawer extends React.Component {
   static propTypes = {
     isVisible: PropTypes.bool,
     onChangeVisible: PropTypes.func,
+    rootEl: PropTypes.node,
     sidebar: PropTypes.object,
     sidebarStyle: PropTypes.object,
+    expoCheckFunc: PropTypes.func,
   };
 
   static defaultProps = {
     isVisible: false,
     onChangeVisible: () => {},
+    rootEl: null,
     sidebar: {},
     sidebarStyle: {},
+    expoCheckFunc: () => {},
   };
 
+  componentDidMount() {
+    // 延迟过渡动画执行完再进行手动曝光
+    setTimeout(() => {
+      this.props.expoCheckFunc();
+    }, ANIMATION_TIME);
+  }
+
   componentDidUpdate(prevProps) {
-    if (this.props.isVisible != prevProps.isVisible) {
-      this.changeAddPointTaskArea(this.props.isVisible);
+    const { isVisible, rootEl } = this.props;
+    if (isVisible != prevProps.isVisible) {
+      this.changeAddPointTaskArea(isVisible);
+      // 锁住根节点，在抽屉打开后抽屉外的主页面不允许上下滑动
+      rootEl && (rootEl.style.height = this.props.isVisible ? document.documentElement.clientHeight + 'px' : null);
+      rootEl && (rootEl.style.overflow = this.props.isVisible ? 'hidden' : null);
     }
   }
 
@@ -37,11 +54,6 @@ class BizDrawer extends React.Component {
       setTimeout(() => {
         this.setState({
           taskCls: 'drawer-bottom drawer-open',
-        }, () => {
-          // 曝光自动检测需要在抽屉弹窗动效0.3s执行完后
-          setTimeout(() => {
-            window.Tracert && Tracert.startAutoExpo();
-          }, 300);
         });
       }, 0);
     } else {
@@ -54,7 +66,7 @@ class BizDrawer extends React.Component {
         // 显示到隐藏的过渡动效执行时间是0.3s
         setTimeout(() => {
           this.taskNode.classList.add('display-none');
-        }, 300);
+        }, ANIMATION_TIME);
       });
     }
   }
