@@ -1,0 +1,51 @@
+{
+  "name": "biz-drawer",
+  "version": "1.0.0",
+  "description": "simple drawer for biz scene using react",
+  "main": "index.js",
+  "keywords": [
+    "drawer",
+    "react",
+    "react-component"
+  ],
+  "config": {
+    "port": 8000
+  },
+  "scripts": {
+    "build": "rc-tools run build",
+    "compile": "rc-tools run compile --babel-runtime",
+    "gh-pages": "rc-tools run gh-pages",
+    "start": "rc-tools run server",
+    "pub": "rc-tools run pub",
+    "lint": "rc-tools run lint"
+  },
+  "devDependencies": {
+    "pre-commit": "1.x",
+    "rc-tools": "^7.0.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.8",
+    "rc-util": "^4.3.0"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/missjing/biz-drawer.git"
+  },
+  "author": "crystal.cj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/missjing/biz-drawer/issues"
+  },
+  "homepage": "https://github.com/missjing/biz-drawer#readme"
+}
