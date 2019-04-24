@@ -11,6 +11,7 @@ class BizDrawer extends React.Component {
   static propTypes = {
     isVisible: PropTypes.bool,
     onChangeVisible: PropTypes.func,
+    closable: PropTypes.bool,
     rootEl: PropTypes.node,
     sidebar: PropTypes.object,
     sidebarStyle: PropTypes.object,
@@ -20,18 +21,12 @@ class BizDrawer extends React.Component {
   static defaultProps = {
     isVisible: false,
     onChangeVisible: () => {},
+    closable: true,
     rootEl: null,
     sidebar: {},
     sidebarStyle: {},
     expoCheckFunc: () => {},
   };
-
-  componentDidMount() {
-    // 延迟过渡动画执行完再进行手动曝光
-    setTimeout(() => {
-      this.props.expoCheckFunc();
-    }, ANIMATION_TIME);
-  }
 
   componentDidUpdate(prevProps) {
     const { isVisible, rootEl } = this.props;
@@ -51,11 +46,14 @@ class BizDrawer extends React.Component {
       // 隐藏状态下先移除 display:none 显示元素
       this.taskNode.classList.remove('display-none');
       // 隐藏状态下先显示元素
-      setTimeout(() => {
-        this.setState({
-          taskCls: 'drawer-bottom drawer-open',
-        });
-      }, 0);
+      this.setState({
+        taskCls: 'drawer-bottom drawer-open',
+      }, () => {
+        // 曝光自动检测需要在抽屉弹窗动效执行完后
+        setTimeout(() => {
+          this.props.expoCheckFunc && this.props.expoCheckFunc();
+        }, ANIMATION_TIME);
+      });
     } else {
       // 若已是隐藏状态，直接返回
       if (taskCls.indexOf('drawer-open') < 0) return;
@@ -76,17 +74,19 @@ class BizDrawer extends React.Component {
   }
 
   render() {
-    const { sidebar, sidebarStyle } = this.props;
+    const { sidebar, sidebarStyle, closable } = this.props;
     const { taskCls } = this.state;
 
     return (
       <div className="display-none" ref={node => { this.taskNode = node; }}>
         <div className={taskCls}>
           <div className="drawer-sidebar" style={sidebarStyle}>
-            <div
-              className="close"
-              onClick={this.onChange.bind(this, false)}
-              />
+            {
+              closable ? <div
+                className="close"
+                onClick={this.onChange.bind(this, false)}
+              /> : null
+            }
             {sidebar}
           </div>
           <div className="drawer-overlay"></div>

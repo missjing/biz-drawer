@@ -33,6 +33,7 @@ class Simple extends React.Component {
 static propTypes = {
     isVisible: PropTypes.bool, // drawer的显示状态
     onChangeVisible: PropTypes.func, // 改变drawer的显示状态函数
+    closable: PropTypes.bool, // 是否显示右上角的关闭按钮
     rootEl: PropTypes.node, // 需要锁住上下滑动的根节点
     sidebar: PropTypes.object,
     sidebarStyle: PropTypes.object,
@@ -42,6 +43,7 @@ static propTypes = {
   static defaultProps = {
     isVisible: false,
     onChangeVisible: () => {},
+    closable: true,
     rootEl: null,
     sidebar: {},
     sidebarStyle: {},
