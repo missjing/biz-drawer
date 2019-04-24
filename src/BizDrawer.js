@@ -45,15 +45,17 @@ class BizDrawer extends React.Component {
       if (taskCls.indexOf('drawer-open') >= 0) return;
       // 隐藏状态下先移除 display:none 显示元素
       this.taskNode.classList.remove('display-none');
-      // 隐藏状态下先显示元素
-      this.setState({
-        taskCls: 'drawer-bottom drawer-open',
-      }, () => {
-        // 曝光自动检测需要在抽屉弹窗动效执行完后
-        setTimeout(() => {
-          this.props.expoCheckFunc && this.props.expoCheckFunc();
-        }, ANIMATION_TIME);
-      });
+      // 隐藏状态下先显示元素，加一个延迟与 display-none 的效果分隔开
+      setTimeout(() => {
+        this.setState({
+          taskCls: 'drawer-bottom drawer-open',
+        }, () => {
+          // 曝光自动检测需要在抽屉弹窗动效执行完后
+          setTimeout(() => {
+            this.props.expoCheckFunc && this.props.expoCheckFunc();
+          }, ANIMATION_TIME);
+        });
+      }, 10);
     } else {
       // 若已是隐藏状态，直接返回
       if (taskCls.indexOf('drawer-open') < 0) return;
