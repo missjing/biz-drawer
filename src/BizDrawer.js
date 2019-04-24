@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/index.less';
+import './BizDrawer.less';
 import PropTypes from 'prop-types';
 
 // 过渡动画时长300ms

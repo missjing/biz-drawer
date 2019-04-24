@@ -1,51 +1,34 @@
 {
   "name": "biz-drawer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "simple drawer for biz scene using react",
-  "main": "index.js",
+  "author": "crystal.cj",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "keywords": [
     "drawer",
-    "react",
     "react-component"
   ],
-  "config": {
-    "port": 8000
-  },
+  "license": "MIT",
   "scripts": {
-    "build": "rc-tools run build",
-    "compile": "rc-tools run compile --babel-runtime",
-    "gh-pages": "rc-tools run gh-pages",
-    "start": "rc-tools run server",
-    "pub": "rc-tools run pub",
-    "lint": "rc-tools run lint"
+    "build": "umi-library build",
+    "doc:dev": "umi-lib doc dev",
+    "doc:build": "umi-lib doc build",
+    "doc:deploy": "umi-lib doc deploy"
   },
-  "devDependencies": {
-    "pre-commit": "1.x",
-    "rc-tools": "^7.0.2",
+  "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
-  "pre-commit": [
-    "lint"
+  "devDependencies": {
+    "umi-library": "^1.4.1"
+  },
+  "files": [
+    "dist"
   ],
-  "dependencies": {
-    "babel-runtime": "^6.26.0",
-    "classnames": "^2.2.5",
-    "prop-types": "^15.5.8",
-    "rc-util": "^4.3.0"
-  },
-  "directories": {
-    "example": "examples",
-    "test": "tests"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/missjing/biz-drawer.git"
-  },
-  "author": "crystal.cj",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/missjing/biz-drawer/issues"
-  },
-  "homepage": "https://github.com/missjing/biz-drawer#readme"
+  }
 }

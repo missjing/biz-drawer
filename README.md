@@ -27,8 +27,6 @@ class Simple extends React.Component {
 }
 ```
 
-可下载工程，tnpm run start，在 ./examples/simple.html 下查看例子效果
-
 
 ## Details
 ```
