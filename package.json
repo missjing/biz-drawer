@@ -1,6 +1,6 @@
 {
   "name": "biz-drawer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "simple drawer for biz scene using react",
   "author": "crystal.cj",
   "main": "dist/index.js",

@@ -12,6 +12,7 @@ class BizDrawer extends React.Component {
     isVisible: PropTypes.bool,
     onChangeVisible: PropTypes.func,
     closable: PropTypes.bool,
+    maskClosable: PropTypes.bool,
     rootEl: PropTypes.node,
     sidebar: PropTypes.object,
     sidebarStyle: PropTypes.object,
@@ -22,6 +23,7 @@ class BizDrawer extends React.Component {
     isVisible: false,
     onChangeVisible: () => {},
     closable: true,
+    maskClosable: true,
     rootEl: null,
     sidebar: {},
     sidebarStyle: {},
@@ -75,13 +77,23 @@ class BizDrawer extends React.Component {
     this.props.onChangeVisible(flag);
   }
 
+  onMaskClick = e => {
+    if (!this.props.maskClosable) {
+      return;
+    }
+    this.onChange(false);
+  };
+
   render() {
     const { sidebar, sidebarStyle, closable } = this.props;
     const { taskCls } = this.state;
+    const containerStyle = {
+      height: (document.documentElement.clientHeight - sidebarStyle.height) + 'px',
+    };
 
     return (
       <div className="display-none" ref={node => { this.taskNode = node; }}>
-        <div className={taskCls}>
+        <div className={taskCls} style={containerStyle}>
           <div className="drawer-sidebar" style={sidebarStyle}>
             {
               closable ? <div
@@ -91,7 +103,10 @@ class BizDrawer extends React.Component {
             }
             {sidebar}
           </div>
-          <div className="drawer-overlay"></div>
+          <div
+            className="drawer-overlay"
+            onClick={this.onMaskClick}
+            />
         </div>
       </div>
     );
