@@ -46,7 +46,7 @@ class BizDrawer extends React.Component {
       // 若已是显示状态，直接返回
       if (taskCls.indexOf('drawer-open') >= 0) return;
       // 隐藏状态下先移除 display:none 显示元素
-      this.taskNode.classList.remove('display-none');
+      this.taskNode && this.taskNode.classList.remove('display-none');
       // 隐藏状态下先显示元素，加一个延迟与 display-none 的效果分隔开
       setTimeout(() => {
         this.setState({
@@ -67,7 +67,7 @@ class BizDrawer extends React.Component {
       }, () => {
         // 显示到隐藏的过渡动效执行时间是0.3s
         setTimeout(() => {
-          this.taskNode.classList.add('display-none');
+          this.taskNode && this.taskNode.classList.add('display-none');
         }, ANIMATION_TIME);
       });
     }

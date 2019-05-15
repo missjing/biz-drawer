@@ -1,6 +1,6 @@
 {
   "name": "biz-drawer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "simple drawer for biz scene using react",
   "author": "crystal.cj",
   "main": "dist/index.js",
@@ -12,7 +12,8 @@
   "license": "MIT",
   "scripts": {
     "build": "umi-library build",
-    "dev": "cd example && umi dev"
+    "dev": "cd example && umi dev",
+    "test": "umi-test"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -20,7 +21,9 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "umi-library": "^1.4.1"
+    "umi-library": "^1.4.1",
+    "umi-test": "^1.5.7",
+    "should": "^11.1.2"
   },
   "files": [
     "dist"
