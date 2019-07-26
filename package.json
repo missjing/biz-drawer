@@ -1,6 +1,6 @@
 {
   "name": "biz-drawer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "simple drawer for biz scene using react",
   "author": "crystal.cj",
   "main": "dist/index.js",
@@ -21,9 +21,10 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "postcss-px2rem": "^0.3.0",
+    "should": "^11.1.2",
     "umi-library": "^1.4.1",
-    "umi-test": "^1.5.7",
-    "should": "^11.1.2"
+    "umi-test": "^1.5.7"
   },
   "files": [
     "dist"
